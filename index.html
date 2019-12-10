@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="style.css" />
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <title>Work Day Scheduler</title>
+  </head>
+
+  <body>
+    <header class="jumbotron">
+      <h1 class="display-3">Work Day Scheduler</h1>
+      <p class="lead">A simple calendar app for scheduling your work day</p>
+      <p id="currentDay" class="lead"></p>
+    </header>
+    <div class="container">
+      <ul class="rowList">
+        <li class="row"><span class="hour">9AM</span><textarea class="zero"></textarea><button class="saveBtn Btn0"><i class="fas fa-save"></i></button></li>
+        <li class="row"><span class="hour">10AM</span><textarea class="one"></textarea><button class="saveBtn Btn1"><i class="fas fa-save"></i></button></li>
+        <li class="row"><span class="hour">11AM</span><textarea class="two"></textarea><button class="saveBtn Btn2"><i class="fas fa-save"></i></button></li>
+        <li class="row"><span class="hour">12PM</span><textarea class="three"></textarea><button class="saveBtn Btn3"><i class="fas fa-save"></i></button></li>
+        <li class="row"><span class="hour">1PM</span><textarea class="four"></textarea><button class="saveBtn Btn4"><i class="fas fa-save"></i></button></li>
+        <li class="row"><span class="hour">2PM</span><textarea class="five"></textarea><button class="saveBtn Btn5"><i class="fas fa-save"></i></button></li>
+        <li class="row"><span class="hour">3PM</span><textarea class="six"></textarea><button class="saveBtn Btn6"><i class="fas fa-save"></i></button></li>
+        <li class="row"><span class="hour">4PM</span><textarea class="seven"></textarea><button class="saveBtn Btn7"><i class="fas fa-save"></i></button></li>
+        <li class="row"><span class="hour">5PM</span><textarea class="eight"></textarea><button class="saveBtn Btn8"><i class="fas fa-save"></i></button></li>
+        
+      </ul>
+      
+
+
+      
+    </div>
+
+    <script type="text/javascript">
+    
+      
+  //display current date in header
+  $('#currentDay').text(moment().format("dddd, MMMM Do YYYY"));
+  
+
+   
+
+// creating color backgrounds for text areas based on time.
+ var number = 9;
+ var currentTime = moment().hour();
+ var listArr = [
+      $('.zero'),
+      $('.one'),
+      $('.two'),
+      $('.three'),
+      $('.four'),
+      $('.five'),
+      $('.six'),
+      $('.seven'),
+      $('.eight'), 
+    ]
+
+    for(var i =0; i < listArr.length; i++) { 
+    
+        if (currentTime > number) {
+      listArr[i].addClass('past')
+    } else if (currentTime === number) { 
+      listArr[i].addClass('present')
+    } else {
+      listArr[i].addClass('future')    
+    }
+    number++;
+  } 
+
+// Storing text area content into local storage when save button is clicked  
+
+$(".Btn0").on("click", function() {
+  localStorage.setItem('zero', $('.zero').val());
+});
+$(".Btn1").on("click", function() {
+  localStorage.setItem('one', $('.one').val())
+});
+$(".Btn2").on("click", function() {
+  localStorage.setItem('two', $('.two').val())
+});
+$(".Btn3").on("click", function() {
+  localStorage.setItem('three', $('.three').val())
+});
+$(".Btn4").on("click", function() {
+  localStorage.setItem('four', $('.four').val())
+});
+$(".Btn5").on("click", function() {
+  localStorage.setItem('five', $('.five').val())
+});
+$(".Btn6").on("click", function() {
+  localStorage.setItem('six', $('.six').val())
+});
+$(".Btn7").on("click", function() {
+  localStorage.setItem('seven', $('.seven').val())
+});
+$(".Btn8").on("click", function() {
+  localStorage.setItem('eight', $('.eight').val())
+});
+
+//rendering most recently saved event from local storage
+function renderEvents() {
+ var zero = localStorage.getItem('zero');
+ $('.zero').append(zero);
+ var one = localStorage.getItem('one');
+ $('.one').append(one);
+ var two = localStorage.getItem('two');
+ $('.two').append(two);
+ var three = localStorage.getItem('three');
+ $('.three').append(three);
+ var four = localStorage.getItem('four');
+ $('.four').append(four);
+ var five = localStorage.getItem('five');
+ $('.five').append(five);
+ var six = localStorage.getItem('six');
+ $('.six').append(six);
+ var seven = localStorage.getItem('seven');
+ $('.seven').append(seven);
+ var eight = localStorage.getItem('eight');
+ $('.eight').append(eight);
+}    
+
+  renderEvents();
+  
+ 
+    </script>
+  
+    
+  </body>
+</html>
